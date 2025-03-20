@@ -1,0 +1,67 @@
+#AUTHOR = LEBEDEV IVAN [24ИП5Т]
+#WORK PRACTIC NUMBER 2:
+#1 SLIDE:
+data = 2
+class Vertex:
+    def __init__(self, data):
+        self.data = data
+        self.adjacent = []
+
+class Graph:
+    def __init__(self):
+        self.vertices = []
+
+#2 SLIDE:
+def add_vertex(self, vertex_data):
+    vertex = Vertex(vertex_data)
+    self.vertices.append(vertex)
+    return vertex
+
+def add_edge(self, src, dest):
+    src = self.find_vertex(src)
+    dest = self.find_vertex(dest)
+    src.adjcent.append(dest)
+#3 SLIDE:
+def topological_sort(self):
+    indegrees = {v: 0 for v in self.vertices}
+
+    for vertex in self.vertices:
+        for neighbor in vertex.adjacent:
+            indegrees[neighbor] += 1
+
+    sorted_vertices = []
+
+    for vertex in self.vertices:
+        if indegrees[vertex] == 0:
+            self.tolopogical_sort_util(vertex, sorted_vertices)
+
+    return sorted_vertices
+
+def topological_sort_util(self, vertex, sorted_vertices):
+    for neighbor in vertex.adjacent:
+        indegrees [neighbor] -= 1
+        if indegress [neighbor] == 0:
+            self.tolopogical_sort_util(neighbor, sorted_vertices)
+    sorted_vertices.append(vertex)
+#4 SLIDE:
+def find_path(self, start, end):
+    visited = set()
+    path = []
+
+    def dfs(vertex):
+        visited.add(vertex)
+        if vertex == end:
+            return True
+
+        for neighbor in vertex.adjacent:
+            if neighbor not in visited:
+                if dfs(neighbor):
+                    path.append(vertex.data)
+                    return True
+
+        return False
+
+    dfs(start)
+    return path if path else None
+
+#Вывод: Освоил навыки создания и реализации ориентированного ациклического графа (DAG)
